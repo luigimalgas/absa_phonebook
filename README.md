@@ -7,7 +7,7 @@ ABSA CIB Digital Tech Assessment
 The project is dependant on 
 > Install-Package Microsoft.EntityFrameworkCore.SqlServer
 
-Once the project is cloned, to initiate it run the following to stantiate the database
+Once the project is cloned, to initiate it run the following on NuGet Package Manager > Package Manager Console (PMC):
 
 > Remove-Migration
 > Add-Migration InitialCreate
