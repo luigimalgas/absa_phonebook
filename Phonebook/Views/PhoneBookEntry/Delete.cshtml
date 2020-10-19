@@ -1,0 +1,16 @@
+﻿@model Phonebook.Models.PhonebookEntry
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete <b>@Html.DisplayFor(model => model.Name)</b>?</h3>
+<div>    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-controller="PhoneBook" asp-action="DetailS" class="btn btn-primary" asp-route-id="@Model.PhonebookID">Cancel</a>
+    </form>
+</div>

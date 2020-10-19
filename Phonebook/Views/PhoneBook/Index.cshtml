@@ -1,0 +1,59 @@
+﻿@model Phonebook.Models.PhoneBook
+
+@{
+    ViewData["Title"] = "Phonebooks";
+    List<Phonebook.Models.PhoneBook> phoneBooks = (List<Phonebook.Models.PhoneBook>)ViewData["PhoneBookList"];
+}
+
+<h1>Phonebook List</h1>
+<div>
+    <p style="width:200px;float:left;">
+        <a class="btn btn-success" data-toggle="modal" data-target="#addPhoneBookModal">Create New</a>
+    </p>
+    <form asp-action="Index" class="form-inline" style="float:right;">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <input class="form-control" placeholder="Search..." name="searchString" data-toggle="tooltip" data-placement="bottom" title="Press enter to search" />&nbsp;&nbsp;
+            <input type="submit" value="Submit" class="btn btn-success" />
+
+        </div>
+        
+    </form>
+</div>
+<table class="table thead-dark">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in phoneBooks)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a asp-action="AddEntry" asp-route-id="@item.ID" class="btn btn-success">Add Entry</a>
+                    <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-primary">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger open-delete-modal" data-toggle="modal" data-target="#deletePhoneBookModal" data-id="@item.ID"  data-name="@item.Name">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<partial name="../Modals/_CreatePhonebookModal.cshtml" />
+
+<partial name="../Modals/_DeletePhonebookModal.cshtml" />
+
+<script type="text/javascript">
+    $(document).on('click', '.open-delete-modal', function () {
+        var name = $(this).data('name');
+        $("#pbName").text(name);
+        $("#pbID").val($(this).data('id'));
+    })
+</script>
