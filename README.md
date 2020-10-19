@@ -9,6 +9,7 @@ The project is dependant on
 
 Once the project is cloned, to initiate it run the following to stantiate the database
 
+> Remove-Migration
 > Add-Migration InitialCreate
 > Update-Database
 
